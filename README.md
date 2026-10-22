@@ -8,6 +8,8 @@ CartPilot is a shopping assistant for people who can describe what they need but
 
 Run this prototype locally; no hosted application has been deployed. No real money or real products are involved.
 
+**Ready to host:** [Deploy CartPilot on Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2Ftarun-vignes%2Fcartpilot-paypal-ai). The repository includes a free Node-service Blueprint; see [deployment steps](docs/deployment.md). A Render account connection or manual confirmation is still required, so this link is a deployment launcher, not an already-live app.
+
 ## Run locally
 
 Requires **Node.js 22.12+** and npm. In PowerShell, from this project folder:

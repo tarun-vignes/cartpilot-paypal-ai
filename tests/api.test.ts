@@ -36,6 +36,14 @@ const remote = (status = 'APPROVED', value = '43.95'): PayPalOrder => ({
 });
 
 describe('server checkout state and security', () => {
+  it('serves a public health check without credentials or sessions', async () => {
+    const response = await supertest(createApp(settingsFromEnv({}))).get(
+      '/healthz',
+    );
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ status: 'ok', sandbox: true });
+    expect(response.headers['set-cookie']).toBeUndefined();
+  });
   let port: PayPalPort;
   beforeEach(() => {
     port = {

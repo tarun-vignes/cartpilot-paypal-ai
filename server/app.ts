@@ -34,6 +34,10 @@ export function createApp(config: Settings, services: Services = {}) {
     });
     next();
   });
+  app.get('/healthz', (_req, res) => {
+    res.set('Cache-Control', 'no-store');
+    res.json({ status: 'ok', sandbox: true });
+  });
   app.use('/api', express.json({ limit: '16kb' }));
   app.use('/api', (req, res, next) => {
     res.set('Cache-Control', 'no-store');

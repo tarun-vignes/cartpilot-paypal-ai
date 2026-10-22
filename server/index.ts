@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import { createServer } from 'vite';
 import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { createApp } from './app';
@@ -12,13 +11,14 @@ if (process.argv.includes('--production')) {
   app.use(express.static(dist));
   app.get('/{*path}', (_req, res) => res.sendFile(`${dist}/index.html`));
 } else {
+  const { createServer } = await import('vite');
   const vite = await createServer({
     server: { middlewareMode: true },
     appType: 'spa',
   });
   app.use(vite.middlewares);
 }
-const server = app.listen(settings.port, () =>
+const server = app.listen(settings.port, '0.0.0.0', () =>
   console.log(
     `CartPilot: ${settings.origin}\nSandbox only. AI: ${settings.aiProvider === 'gemini' && settings.geminiKey ? 'Gemini configured' : 'demo recommendation logic'}. PayPal: ${settings.paypalId && settings.paypalSecret ? 'sandbox configured' : 'unavailable — add sandbox credentials'}.`,
   ),

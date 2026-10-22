@@ -11,7 +11,8 @@ export type Settings = {
 export function settingsFromEnv(env: NodeJS.ProcessEnv): Settings {
   if (env.PAYPAL_ENV && env.PAYPAL_ENV !== 'sandbox')
     throw new Error('Only PAYPAL_ENV=sandbox is supported.');
-  const origin = env.APP_ORIGIN || 'http://localhost:3000';
+  const origin =
+    env.APP_ORIGIN || env.RENDER_EXTERNAL_URL || 'http://localhost:3000';
   const url = new URL(origin);
   if (
     url.origin !== origin ||

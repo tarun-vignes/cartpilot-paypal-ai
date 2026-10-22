@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: cartpilot-paypal-ai
+    runtime: node
+    plan: free
+    repo: https://github.com/tarun-vignes/cartpilot-paypal-ai
+    branch: main
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: NODE_VERSION
+        value: 22.19.0
+      - key: NODE_ENV
+        value: production
+      - key: AI_PROVIDER
+        value: gemini
+      - key: GEMINI_MODEL
+        value: gemini-3.1-flash-lite
+      - key: PAYPAL_ENV
+        value: sandbox

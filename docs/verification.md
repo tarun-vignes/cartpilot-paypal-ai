@@ -42,3 +42,11 @@ The initial handoff was local only. The entrant subsequently authorized source p
 ## Remaining verification
 
 Add sandbox app credentials, personally complete approval/capture with a separate sandbox buyer, confirm the capture in the PayPal sandbox dashboard, and rehearse cancellation/failure recovery before recording an end-to-end video. Keep this prototype to one process; in-memory payment state is not durable across restarts.
+
+## Render deployment preparation
+
+The entrant subsequently requested deployment. Added `render.yaml` for a free single-instance Node web service, a credential-free `/healthz` route, automatic `RENDER_EXTERNAL_URL` origin configuration, explicit all-interface port binding, and a dynamic Vite import so production startup does not load the development server.
+
+Revalidation: **39 tests passed** (the original 36 plus two hosting-origin tests and a health-route test). Formatting, TypeScript, the production build, and secret scanning passed. Local production smoke checks returned HTTP 200 for `/`, `/healthz`, and `/api/config` using the Render-style origin fallback.
+
+Render account access is not connected in this session. The Blueprint and deployment launcher are prepared; no Render service or live URL has been verified. The local Gemini environment key does not automatically transfer to a hosting account. PayPal credentials remain unavailable.
